@@ -34,3 +34,18 @@ Coloring is another problem.
 One way is to just apply colors based on the resulting darkness of pixels.
 This is "just" a density mapping of the histogram and allow for colouring based upon other attributes of the attractor path, such as curvature.
 But such attributes can be encoded into the histogram encoding, for example the amount added to a cell being a function of curvature.
+
+## Pentaflake
+
+<figure>
+    <img src="out/pentaflake.png">
+</figure>
+
+- draw a regular pentagon
+- replace the pentagon with six smaller similar pentagons (one in the center) in a tiling manner
+- repeat with the smaller pentagons
+
+The first iteration of the pentaflake looks like five pentagons arranged around an identical pentagon.
+This cluster of six pentagons has the shape of a pentagon with five triangular wedges removed.
+Removing triangles is thus another way to construct the fractal.
+This construction was first noticed by Albrecht Dürer [Dixon 1991].
