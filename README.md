@@ -50,3 +50,34 @@ The first iteration of the pentaflake looks like five pentagons arranged around 
 This cluster of six pentagons has the shape of a pentagon with five triangular wedges removed.
 Removing triangles is thus another way to construct the fractal.
 This construction was first noticed by Albrecht Dürer [Dixon 1991].
+
+## Barnsley Fern
+
+<figure>
+    <img src="out/barnsley_fern.png">
+</figure>
+
+Described by Michael Barnsley.
+
+The process is similar to drawing an attractor,
+except on each step one of four predefined formulas is chosen to calculate the next point instead of one.
+Each formula has its predefined probability.
+
+    (1), 1%
+    x[n+1] = 0
+    y[n+1] = 0.16 * y[n]
+
+    (2), 85%
+    x[n+1] = 0.85 * x[n] + 0.04 * y[n]
+    y[n+1] = -0.04 * x[n] + 0.85 * y[n] + 1.6
+
+    (3), 7%
+    x[n+1] = 0.2 * x[n] - 0.26 * y[n]
+    y[n+1] = 0.23 * x[n] + 0.22 * y[n] + 1.6
+
+    (4), 7%
+    x[n+1] = -0.15 * x[n] + 0.28 * y[n]
+    y[n+1] = 0.26 * x[n] + 0.24 * y[n] + 0.44
+
+Each formula is an affine transformation, which means a combination of scaling, rotation and mirroring is used each time to get the next point.
+The transformations are devised in such a manner that the point "jumping around" will draw a fern-like figure.
