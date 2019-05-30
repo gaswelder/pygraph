@@ -1,4 +1,13 @@
+# CG exercises
+
 ## Clifford Attractors
+
+<figure>
+    <img src="out/pickover-0.png">
+    <img src="out/pickover-1.png">
+    <img src="out/pickover-2.png">
+    <img src="out/pickover-3.png">
+</figure>
 
 Attributed to Clifford Pickover.
 
@@ -19,21 +28,13 @@ Examples:
 
 Set up a grid of pixel values.
 Evaluate points on the attractor and just increment each cell of the grid if the attractor passes through it.
-So it's essentially a 2D histogram for occupancy.
-
 As this is a "chaotic" process, the image will be noisy unless enough "exposure" is achieved by looping many enough times.
+
 You'd stop the loop when the image is nice and smooth enough, but how do you detect that?
-
 One option is to just specify a huge number that will certainly be enough.
-
 Another is to stop iterating when you land on a pixel with a value above some preset.
-But in this case you can start too early if the attractor has high dynamic range
-(meaning, a point may reach saturation well before all other points were even touched).
-
-Coloring is another problem.
-One way is to just apply colors based on the resulting darkness of pixels.
-This is "just" a density mapping of the histogram and allow for colouring based upon other attributes of the attractor path, such as curvature.
-But such attributes can be encoded into the histogram encoding, for example the amount added to a cell being a function of curvature.
+But in this case you can stop too early if the attractor has high dynamic range
+(meaning, a point may reach saturation well before a lot of other points were even touched).
 
 ## Pentaflake
 
