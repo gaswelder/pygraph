@@ -81,3 +81,35 @@ Each formula has its predefined probability.
 
 Each formula is an affine transformation, which means a combination of scaling, rotation and mirroring is used each time to get the next point.
 The transformations are devised in such a manner that the point "jumping around" will draw a fern-like figure.
+
+## Thorn fractal
+
+<figure>
+    <img src="out/thorn-0.png">
+    <img src="out/thorn-1.png">
+    <img src="out/thorn-2.png">
+    <img src="out/thorn-3.png">
+    <img src="out/thorn-4.png">
+</figure>
+
+Define this complex number series `S(z)`:
+
+    re(z[n+1]) = re(z[n]) / cos(im(z[n])) + re(c)
+    im(z[n+1]) = im(z[n]) / sin(re(z[n])) + im(c),
+
+where `c` is a constant.
+
+Then:
+
+- take a complex plane bounded by -pi and pi on both sides
+- for each point `p` on that plane start a series `S(z)` using `p` as the first value of `z`
+- determine how many steps `n` that series requires for the values modulus to exceed 100
+- use `n` as brightness value at that given point.
+
+Use various values of `c` to get various images, for example:
+
+    (0.102, -0.04),
+    (1.098, 1.402),
+    (9.984, 7.55),
+    (0.662, 1.086),
+    (-0.354, 0.162)
