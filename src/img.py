@@ -52,7 +52,7 @@ class img:
     def getpixel(self, x, y):
         pos = self._pixelpos(x, y)
         if pos < 0:
-            raise IndexError("invalid (x, y)")
+            raise IndexError(f"invalid (x, y): ({x}, {y})")
         return (self.data[pos], self.data[pos+1], self.data[pos+2])
 
     def putpixel(self, x, y, rgb):
@@ -73,7 +73,7 @@ class img:
             darken(g, amount),
             darken(b, amount)
         )
-        self.putpixel(x, y, (r, g, b))
+        self.putpixel(xi, yi, (r, g, b))
 
     def line(self, p1, p2):
         (x0, y0) = p1

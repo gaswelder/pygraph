@@ -1,5 +1,6 @@
 from .img import img
 import math
+from .geometry import fit_points
 
 
 def main(outdir):
@@ -15,7 +16,7 @@ def main(outdir):
     points = [rotate_x(p, math.pi/3) for p in points]
 
     # Scale to fit the image
-    points = scale(points, width, height)
+    points = fit_points(points, width, height)
 
     for p in points:
         i.addblack(p[0], p[1], 30)
@@ -36,26 +37,6 @@ def rossler(a, b, c):
 
 def take(n, it):
     return [x for _, x in zip(range(n), it)]
-
-
-def scale(points, width, height):
-    margin = 10
-    xs = [p[0] for p in points]
-    ys = [p[1] for p in points]
-    return zip(
-        fitrange(xs, margin, width - margin),
-        fitrange(ys, margin, height - margin)
-    )
-
-
-def fitrange(xs, left, right):
-    # minx * k + c = left
-    # maxx * k + c = right
-    xmax = max(xs)
-    xmin = min(xs)
-    k = (right - left) / (xmax - xmin)
-    c = left - xmin * k
-    return [k*x + c for x in xs]
 
 
 def rotate_x(point, theta):
