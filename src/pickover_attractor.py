@@ -2,17 +2,6 @@ from .img import img
 import math
 
 
-def darken(value, amount=1):
-    if value < amount:
-        return 0
-    return value - amount
-
-
-def addblack(pixel):
-    (r, g, b) = pixel
-    return (darken(r), darken(g), darken(b))
-
-
 def next_point(point, params):
     (x, y) = point
     (A, B, C, D) = params
@@ -27,9 +16,9 @@ def pickover_attractor(params, filename):
     y = 0
     for _ in range(0, 10000000):
         (x, y) = next_point((x, y), params)
-        rx = int(100 * x) + 300
-        ry = int(100 * y) + 300
-        i.putpixel(rx, ry, addblack(i.getpixel(rx, ry)))
+        rx = 100 * x + 300
+        ry = 100 * y + 300
+        i.addblack(rx, ry, 1)
     i.save(filename)
 
 
@@ -41,5 +30,5 @@ def main(dir):
         (-1.4, 1.6, 1.0, 0.7),
     ]
 
-    for [conf, index] in list(zip(confs, range(len(confs)))):
+    for index, conf in enumerate(confs):
         pickover_attractor(conf, dir + '/pickover-' + str(index) + '.png')

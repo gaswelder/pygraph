@@ -10,6 +10,12 @@ def frange(x0, x1, step):
     yield x1
 
 
+def darken(value, amount):
+    if value < amount:
+        return 0
+    return value - amount
+
+
 class line:
     def __init__(self, p1, p2):
         (x1, y1) = p1
@@ -57,6 +63,17 @@ class img:
             return
         for i in range(0, 3):
             self.data[pos + i] = rgb[i]
+
+    def addblack(self, x, y, amount=1):
+        xi = round(x)
+        yi = round(y)
+        (r, g, b) = self.getpixel(xi, yi)
+        (r, g, b) = (
+            darken(r, amount),
+            darken(g, amount),
+            darken(b, amount)
+        )
+        self.putpixel(x, y, (r, g, b))
 
     def line(self, p1, p2):
         (x0, y0) = p1

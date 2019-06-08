@@ -18,7 +18,7 @@ def main(outdir):
     points = scale(points, width, height)
 
     for p in points:
-        i.putpixel(p[0], p[1], (0, 0, 0))
+        i.addblack(p[0], p[1], 30)
 
     i.save(outdir + '/rossler.png')
 

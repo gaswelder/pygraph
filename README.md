@@ -122,9 +122,9 @@ Credited to Otto Rossler and arose from work in chemical kinetics.
 
 This is a phase portrait of a chaotic system described as:
 
-    dx / dt = - y - z
-    dy / dt = x + a y
-    dz / dt = b + z ( x - c )
+    dx/dt = -y - z
+    dy/dt = x + a*y
+    dz/dt = b + z*(x - c)
 
 where:
 
