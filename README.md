@@ -2,12 +2,12 @@
 
 ## Clifford Attractors
 
-<figure>
+<p>
     <img src="out/pickover-0.png">
     <img src="out/pickover-1.png">
     <img src="out/pickover-2.png">
     <img src="out/pickover-3.png">
-</figure>
+</p>
 
 Attributed to Clifford Pickover.
 
