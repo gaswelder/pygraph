@@ -113,3 +113,20 @@ Use various values of `c` to get various images, for example:
     (9.984, 7.55),
     (0.662, 1.086),
     (-0.354, 0.162)
+
+## Rössler Attractor
+
+<img src="out/rossler.png">
+
+Credited to Otto Rossler and arose from work in chemical kinetics.
+
+This is a phase portrait of a chaotic system described as:
+
+    dx / dt = - y - z
+    dy / dt = x + a y
+    dz / dt = b + z ( x - c )
+
+where:
+
+    a = 0.2, b = 0.2, c = 5.7
+    a = 0.1, b = 0.1, c = 14
