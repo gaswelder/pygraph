@@ -11,7 +11,6 @@ def main(outdir):
         (0.102, -0.04),
         (1.098, 1.402),
         (9.984, 7.55),
-        (0.662, 1.086),
         (-0.354, 0.162)
     ]
     for j, c in enumerate(params):
@@ -46,22 +45,30 @@ def normalize(lmin, lmax, l):
 
 def thorn(c, width, height):
     "Generates a matrix of pixel values for thorn with parameter c."
+
+    def f(x, y): return thorn_func((x, y), c)
+    pi = math.pi
+
+    return render_2d_function(
+        f, (-pi, pi), (-pi, pi), width=width, height=height)
+
+
+def render_2d_function(f, x_range, y_range, width=600, height=600):
+    (xmin, xmax) = x_range
+    (ymin, ymax) = y_range
+
     values = [[0 for y in range(width)] for x in range(height)]
 
-    for x in range(width):
-        for y in range(height):
-            z = translate(x, y, width, height)
-            values[x][y] = sample(z, c)
+    for i in range(width):
+        for j in range(height):
+            x = xmin + i/width * (xmax-xmin)
+            y = ymin + j/height * (ymax-ymin)
+            values[i][j] = f(x, y)
     return values
 
 
-def translate(x, y, width, height):
-    """translates image coordinates x and y to complex points"""
-    p = math.pi
-    return (-p + x * 2*p / width, -p + y * 2*p / height)
-
-
-def sample(z, c):
+def thorn_func(z, c):
+    "The complex function that is plotted to obtain the Thorn fractal."
     # Spawn a series and see how long it takes for it to grow
     for steps, zn in enumerate(series(c, z)):
         if steps == 255 or (zn[0]**2 + zn[1]**2) > 10000:
