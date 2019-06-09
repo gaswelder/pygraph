@@ -4,6 +4,9 @@ import math
 
 
 def main(outdir):
+    width = 400
+    height = 400
+
     params = [
         (0.102, -0.04),
         (1.098, 1.402),
@@ -12,39 +15,50 @@ def main(outdir):
         (-0.354, 0.162)
     ]
     for j, c in enumerate(params):
-        i = thorn(c)
+        values = thorn(c, width, height)
+        normalize_values(values)
+
+        i = img(width, height)
+        for x, col in enumerate(values):
+            for y, val in enumerate(col):
+                i.putpixel(x, y, (val, val, val))
         i.save(outdir + f'/thorn-{j}.png')
+
+
+def normalize_values(values):
+    "Normalizes the table of values to the range of [0, 255]."
+    lmin = 255
+    lmax = 0
+
+    for col in values:
+        for val in col:
+            lmin = min(lmin, val)
+            lmax = max(lmax, val)
+
+    for x, col in enumerate(values):
+        for y, val in enumerate(col):
+            values[x][y] = normalize(lmin, lmax, values[x][y])
 
 
 def normalize(lmin, lmax, l):
     return round((l - lmin) / (lmax - lmin) * 255)
 
 
-def thorn(c):
-    i = img(600, 600)
-    lmin = 255
-    lmax = 0
-    for x in range(600):
-        for y in range(600):
-            z = translate(x, y)
-            n = sample(z, c)
-            lmin = min(lmin, n)
-            lmax = max(lmax, n)
-            i.putpixel(x, y, (n, n, n))
+def thorn(c, width, height):
+    "Generates a matrix of pixel values for thorn with parameter c."
+    values = [[0 for y in range(width)] for x in range(height)]
 
-    for x in range(600):
-        for y in range(600):
-            p = i.getpixel(x, y)
-            n = normalize(lmin, lmax, p[0])
-            i.putpixel(x, y, (n, n, n))
-
-    return i
+    for x in range(width):
+        for y in range(height):
+            z = translate(x, y, width, height)
+            values[x][y] = sample(z, c)
+    return values
 
 
-def translate(x, y):
+def translate(x, y, width, height):
     """translates image coordinates x and y to complex points"""
     p = math.pi
-    return (-p + x * 2*p / 600, -p + y * 2*p / 600)
+    return (-p + x * 2*p / width, -p + y * 2*p / height)
 
 
 def sample(z, c):

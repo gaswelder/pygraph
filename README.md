@@ -84,13 +84,13 @@ The transformations are devised in such a manner that the point "jumping around"
 
 ## Thorn fractal
 
-<figure>
+<p>
     <img src="out/thorn-0.png">
     <img src="out/thorn-1.png">
     <img src="out/thorn-2.png">
     <img src="out/thorn-3.png">
     <img src="out/thorn-4.png">
-</figure>
+</p>
 
 Define this complex number series `S(z)`:
 
