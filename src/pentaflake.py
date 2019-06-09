@@ -44,5 +44,5 @@ def replace_pentagon(pentagon_spec):
 def render_pentagon(i, spec):
     (center, radius, angle) = spec
     points = geometry.pentagon(center, radius, angle)
-    i.polyline(points)
+    i.polygon(points)
     i.filled_polygon(points)

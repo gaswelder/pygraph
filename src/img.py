@@ -85,6 +85,14 @@ class img:
             self.putpixel(x0 + dx * i, y0 + dy * i, (0, 0, 0))
 
     def polyline(self, points):
+        "Draws a sequence of lines through given points."
+        points = list(points)
+        pairs = zip(points, points[1:])
+        for p in pairs:
+            self.line(p[0], p[1])
+
+    def polygon(self, points):
+        "Draws a polygon with given points as vertices."
         pairs = zip(points, points[1:] + [points[0]])
         for p in pairs:
             self.line(p[0], p[1])

@@ -129,3 +129,25 @@ where:
 
     a = 0.2, b = 0.2, c = 5.7
     a = 0.1, b = 0.1, c = 14
+
+## Dragon curve
+
+<img src="out/dragon.png">
+
+Also named as Heighway Dragon, attributed to John Heighway.
+
+Dragon curve is what you get when you fold a strip of paper `n` times and then spread it keeping all angles at 90 degrees.
+The curve is not so predictable as one might expect.
+Every iteration results in the same figure, just more detailed.
+
+One way to arrive at a solution is to fold an actual piece of paper 1, then 2, then 3 times, marking the iteration number and direction for each fold.
+For example, after 4 folds the marks on the paper would look like:
+
+    4dn 3dn 4up 2dn 4dn 3up 4up 1up 4dn 3dn 4up 2up 4dn 3up 4up
+
+The first fold (1up) is in the center, and if we reorganize the sequence like below, the recursive pattern will become apparent:
+
+                                1up
+                2dn              -              2up
+        3dn      -      3up      -      3dn      -      3up
+    4dn  -  4up  -  4dn  -  4up  -  4dn  -  4up  -  4dn  -  4up
