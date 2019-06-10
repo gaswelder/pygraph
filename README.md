@@ -151,3 +151,9 @@ The first fold (1up) is in the center, and if we reorganize the sequence like be
                 2dn              -              2up
         3dn      -      3up      -      3dn      -      3up
     4dn  -  4up  -  4dn  -  4up  -  4dn  -  4up  -  4dn  -  4up
+
+## Spiralgon
+
+This is a simple school exercise where multiple polygons are nested with rotation to create a twisted pattern.
+
+<img src="out/spiralgon.png">
