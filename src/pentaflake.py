@@ -4,15 +4,16 @@ import math
 
 
 def main(outdir):
-    i = img(600, 600)
+    width = 400
+    height = 400
+    i = img(width, height)
 
     # Instead of operating on points, use
     # tuples describing the pentagons: (center, radius, angle).
 
     # Start with a single pentagon
-    pentagons = [((300, 300), 200, 0)]
-
-    # Replacing pentagons with smaller ones multiple times
+    # then replace pentagons with smaller ones a few times.
+    pentagons = [((width/2, height/2), width/2-20, 0)]
     for _ in range(4):
         pentagons = replace(pentagons)
 
