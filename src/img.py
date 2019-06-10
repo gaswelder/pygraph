@@ -49,12 +49,6 @@ class img:
             return -1
         return (self.width * y + x) * 3
 
-    def getpixel(self, x, y):
-        pos = self._pixelpos(x, y)
-        if pos < 0:
-            raise IndexError(f"invalid (x, y): ({x}, {y})")
-        return (self.data[pos], self.data[pos+1], self.data[pos+2])
-
     def putpixel(self, x, y, rgb):
         xi = round(x)
         yi = round(y)
@@ -67,7 +61,8 @@ class img:
     def addblack(self, x, y, amount=1):
         xi = round(x)
         yi = round(y)
-        (r, g, b) = self.getpixel(xi, yi)
+        pos = self._pixelpos(xi, yi)
+        (r, g, b) = (self.data[pos], self.data[pos+1], self.data[pos+2])
         (r, g, b) = (
             darken(r, amount),
             darken(g, amount),
