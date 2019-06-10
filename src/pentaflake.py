@@ -30,12 +30,16 @@ def replace(specs):
     return new_list
 
 
+def pentagon(c, r, angle):
+    return geometry.regular_polygon(5, c, r, angle)
+
+
 def replace_pentagon(pentagon_spec):
     (current_center, current_radius, angle) = pentagon_spec
     r = current_radius / (1 + 2 * math.cos(math.pi / 5))
 
     smaller_pentagons = []
-    for p in geometry.pentagon(current_center, current_radius - r):
+    for p in pentagon(current_center, current_radius - r, 0):
         smaller_pentagons.append((p, r, angle))
     smaller_pentagons.append((current_center, r, angle + math.pi / 5))
     return smaller_pentagons
@@ -43,6 +47,6 @@ def replace_pentagon(pentagon_spec):
 
 def render_pentagon(i, spec):
     (center, radius, angle) = spec
-    points = geometry.pentagon(center, radius, angle)
+    points = pentagon(center, radius, angle)
     i.polygon(points)
     i.filled_polygon(points)

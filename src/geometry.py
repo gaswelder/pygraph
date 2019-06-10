@@ -22,12 +22,12 @@ def triangles(polygon):
     return [[a, left, b]] + triangles(rest)
 
 
-def pentagon(center, radius, start_angle=0):
-    """Returns a list of pentagon corner points"""
+def regular_polygon(angles, center, radius, rotation_angle=0):
+    """Returns a list of points of a regular polygon."""
     points = []
     (cx, cy) = center
-    for j in range(5):
-        angle = j * 2 * math.pi/5 + start_angle
+    for j in range(angles):
+        angle = j * 2*math.pi/angles + rotation_angle
         x = cx + radius * math.cos(angle)
         y = cy + radius * math.sin(angle)
         points.append((x, y))
